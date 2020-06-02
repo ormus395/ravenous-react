@@ -19,13 +19,24 @@ const business = {
 
 const businesses = [business, business, business, business, business];
 
-function App() {
-  return (
-    <div className="App">
-      <SearchBar />
-      <BusinessList businesses={businesses} />
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.searchYelp = this.searchYelp.bind(this);
+  }
+
+  searchYelp(term, location, searchBy) {
+    console.log(`Searching Yelp for ${term}, in ${location}, by ${searchBy}`);
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <SearchBar searchYelp={this.searchYelp} />
+        <BusinessList businesses={businesses} />
+      </div>
+    );
+  }
 }
 
 export default App;
